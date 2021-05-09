@@ -8,7 +8,7 @@
 usearch -fastq_mergepairs *_R1.fastq -relabel @ -fastq_maxdiffs 8 -fastqout merged.fq
 
 ###Cut barcode xbp +  xbp in left and  xbp in right (according to the primer length)
-usearch -fastx_truncate merged.fq -stripleft 29 -stripright 18 -fastqout stripped.fq
+usearch -fastx_truncate merged.fq -stripleft 29 -stripright 18 -fastqout filtered1.fa
 
 ###Performs quality filtering 
 usearch -fastq_filter filtered1.fa -fastq_trunclen 405 -fastq_maxee 0.8 -fastaout filtered.fa
