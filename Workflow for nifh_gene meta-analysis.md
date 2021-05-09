@@ -1,6 +1,6 @@
 ## This is the workflow for nifh_gene meta-analysis
 
-### Use usearch to deal with the high-squencing data
+### Use Usearch to deal with the high-squencing data
 
 ``` 
 ### The fastq_mergepairs command merges (assembles) paired-end reads to create consensus sequences and, optionally, consensus quality scores
@@ -8,9 +8,7 @@
 usearch -fastq_mergepairs *_R1.fastq -relabel @ -fastq_maxdiffs 8 -fastqout merged.fq
 
 ###Cut barcode xbp +  xbp in left and  xbp in right (according to the primer length)
-time vsearch --fastx_filter merged.fq \
-  --fastq_stripleft 29 --fastq_stripright 18 \
-  --fastaout filtered1.fq
+usearch -fastx_truncate merged.fq -stripleft 29 -stripright 18 -fastqout stripped.fq
 
 ###Performs quality filtering 
 usearch -fastq_filter filtered1.fa -fastq_trunclen 405 -fastq_maxee 0.8 -fastaout filtered.fa
